@@ -1,0 +1,18 @@
+# Railway deployment config za Mattermost fork.
+# Railway čita ovaj fajl iz roota repoa i koristi ga za servis koji pokazuje
+# na ovaj GitHub repo.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Mattermost binar startuje direktno (CMD u Dockerfileu).
+# startCommand bi pregazio CMD — ostavljamo prazno.
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
+
+# /api/v4/system/ping vraća 200 OK kad je server spreman.
+# 300s start period jer prvi boot inicijalizuje DB šemu.
+healthcheckPath = "/api/v4/system/ping"
+healthcheckTimeout = 300

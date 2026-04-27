@@ -1,0 +1,64 @@
+# Smanjuje build kontekst koji Railway šalje builderu —
+# bez ovoga upload bude 1+ GB i build kreće sporo.
+
+# Git i CI
+.git
+.github
+.gitlab-ci.yml
+.circleci
+.gitpod.yml
+
+# Claude / agent meta
+.agents
+.claude
+**/CLAUDE.md
+**/CLAUDE.OPTIONAL.md
+**/AGENTS.md
+**/AGENTS.CLOUD.md
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Build artefakti (Docker pravi svoje unutar stage-ova)
+**/node_modules
+**/.parcel-cache
+**/dist
+webapp/channels/dist
+webapp/platform/*/dist
+server/bin
+server/dist
+
+# Test / e2e ne treba runtime image-u
+e2e-tests
+api
+tools
+**/*.test.go
+**/*_test.go
+**/__tests__
+**/cypress
+**/playwright
+
+# Logs / data
+*.log
+logs/
+data/
+
+# Docs
+**/*.md
+!server/scripts/config_generator/**
+
+# Lokalni Docker compose (Railway koristi svoju Postgres)
+docker-compose*.yml
+docker-compose*.yaml
+**/docker-compose*.yml
+**/docker-compose*.yaml
+
+# Razno
+*.tar.gz
+*.zip
+LICENSE.txt
+NOTICE.txt
